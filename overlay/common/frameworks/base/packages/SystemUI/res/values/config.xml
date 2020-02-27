@@ -4,4 +4,10 @@
    
    <bool name="quick_settings_show_full_alarm">true</bool>
 
+    <!-- Show mic or phone affordance on Keyguard -->
+    <bool name="config_keyguardShowLeftAffordance">true</bool>
+
+    <!-- Show camera affordance on Keyguard -->
+    <bool name="config_keyguardShowCameraAffordance">true</bool>
+
 </resources>
