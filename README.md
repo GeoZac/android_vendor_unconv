@@ -1,7 +1,9 @@
-# SpiritCroc's vendor
+# unConv's vendor
+
+## Forked from [SpiritCroc's vendor](https://github.com/SpiritCroc/android_vendor_spiritcroc)
 
 This repository contains some ROM additions that I like to have in my personal builds,
-but might not be suitable for including by default in official builds.
+but ~might~ *will* not be suitable for including by default in ~official~ any other build.
 
 In order to use this, clone it into vendor/extra.
 Custom ROMs like AICP or LineageOS will automatically call it if they find it in that location.
