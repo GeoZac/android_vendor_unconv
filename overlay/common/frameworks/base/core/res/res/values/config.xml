@@ -2,9 +2,6 @@
 
 <resources>
 
-    <!-- Enable lockscreen rotation by default -->
-    <bool name="config_enableLockScreenRotation">true</bool>
-
     <!-- Whether action menu items should be displayed in ALLCAPS or not.
          Defaults to true. If this is not appropriate for specific locales
          it should be disabled in that locale's resources. -->
