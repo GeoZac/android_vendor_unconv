@@ -38,7 +38,7 @@ def fetchfile(url, filename, filesize):
     out_file.close()
 
 
-def getlatestbromite(forced=False):
+def getlatestbromite():
     repo_name = "bromite/bromite"
     repo_url = f"https://api.github.com/repos/{repo_name}/releases"
     data = get(repo_url).json()
@@ -52,13 +52,14 @@ def getlatestbromite(forced=False):
         # Since we have no priors version,apply a sane value to check
         current_version = "0.0.0.0"
 
-    if version.parse(tag_name) > version.parse(current_version) or forced:
+    if version.parse(tag_name) > version.parse(current_version):
         asset_names = ["arm64_SystemWebView.apk", "arm_SystemWebView.apk"]
         for asset in data[0]["assets"]:
             filename = BASE_PATH + str(asset["name"]).split("_")[0] + "/SystemWebView.apk"
             filesize = asset["size"]
-            if not any(item in asset['name'] for item in asset_names) and DEBUG:
-                print(f"Skipped {asset['name']}")
+            if not any(item in asset["name"] for item in asset_names):
+                if DEBUG:  # Silently continue in case not DEBUG
+                    print(f"Skipped {asset['name']}")
                 continue
             # Assets will have same name, just check for size too, sha matching for a later time
             if isfile(filename) and (filesize == getsize(filename)):
@@ -77,17 +78,22 @@ def checkfileexits():
     if not exists(BASE_PATH + "bromite_version.txt"):
         print("Seems not initilized, will do it now")
         tag = getlatesttag()
-        getlatestbromite(True)
-        writetag(tag)
+        getlatestbromite()
+        if not DEBUG:
+            writetag(tag)
         return False
     print("File Exists, will see about updating")
     return True
 
 
-if __name__ == "__main__":
+def latest_bromite():
     initilized = checkfileexits()
 
     if initilized:
         getlatestbromite()
     else:
         print("Everthing in order")
+
+
+if __name__ == "__main__":
+    latest_bromite()
