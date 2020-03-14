@@ -1,5 +1,8 @@
 VENDOR_EXTRA_PATH := vendor/extra
 
+# Include Lawnchair 
+$(call inherit-product-if-exists, vendor/lawnchair/lawnchair.mk)
+
 # Custom packages
 PRODUCT_PACKAGES += \
     bromite-webview
