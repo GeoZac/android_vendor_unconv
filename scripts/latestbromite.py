@@ -8,15 +8,6 @@ DEBUG = False
 BASE_PATH = "vendor/extra/prebuilt/apps/bromite-webview/"
 
 
-def getlatesttag():
-    repo_name = "bromite/bromite"
-    repo_url = f"https://api.github.com/repos/{repo_name}/releases"
-    data = get(repo_url).json()
-    if DEBUG:
-        print(data[0]["tag_name"])
-    return data[0]["tag_name"]
-
-
 def writetag(tag):
     fname = BASE_PATH + "bromite_version.txt"
     with open(fname, "w") as file_write:
@@ -71,16 +62,15 @@ def getlatestbromite():
                 else:
                     fetchfile(asset["browser_download_url"], filename, filesize)
                     print(f"Updated {asset} to v{tag_name}")
+        if not DEBUG:
+            writetag(tag_name)
 
 
 def checkfileexits():
     # On a fresh clone the files are not supposed to exist, so get the latest tag, get the assets,mark the version
     if not exists(BASE_PATH + "bromite_version.txt"):
         print("Seems not initilized, will do it now")
-        tag = getlatesttag()
         getlatestbromite()
-        if not DEBUG:
-            writetag(tag)
         return False
     print("File Exists, will see about updating")
     return True
