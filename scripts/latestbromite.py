@@ -43,7 +43,10 @@ def getlatestbromite():
         # Since we have no priors version,apply a sane value to check
         current_version = "0.0.0.0"
 
+    updateallowed = False
     if version.parse(tag_name) > version.parse(current_version):
+        updateallowed = input(f"Update apk assets to {tag_name}?") == "y"
+    if updateallowed:
         asset_names = ["arm64_SystemWebView.apk", "arm_SystemWebView.apk"]
         for asset in data[0]["assets"]:
             filename = BASE_PATH + str(asset["name"]).split("_")[0] + "/SystemWebView.apk"
