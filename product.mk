@@ -5,7 +5,9 @@ $(call inherit-product-if-exists, vendor/lawnchair/lawnchair.mk)
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    bromite-webview
+    bromite-webview \
+    Recorder \
+    Terminal
 
 # Extra overlays
 PRODUCT_PACKAGE_OVERLAYS += $(VENDOR_EXTRA_PATH)/overlay/common
