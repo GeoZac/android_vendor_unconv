@@ -55,6 +55,7 @@
   <remove-project name="platform/packages/apps/DevCamera" />
   <remove-project name="platform/packages/apps/LegacyCamera" />
   <remove-project name="platform/packages/apps/SoundRecorder" />
+  <remove-project name="platform/packages/apps/Terminal" />
   <remove-project name="platform/packages/modules/TestModule" />
   <remove-project name="platform/prebuilts/clang/host/darwin-x86" />
   <remove-project name="platform/prebuilts/gcc/darwin-x86/host/i686-apple-darwin-4.2.1" />
@@ -80,5 +81,9 @@
   <remove-project name="LineageOS/android_prebuilts_gcc_darwin-x86_aarch64_aarch64-linux-android-4.9" />
   <remove-project name="LineageOS/android_prebuilts_gcc_darwin-x86_arm_arm-linux-androideabi-4.9" />
   <remove-project name="omnirom/android_packages_apps_Phonograph" />
+
+  <!-- Lineage Alternatives -->
+  <project path="packages/apps/Recorder" name="LineageOS/android_packages_apps_Recorder" remote="github" revision="lineage-17.1" />
+  <project path="packages/apps/Terminal" name="LineageOS/android_packages_apps_Terminal" remote="github" revision="lineage-17.1" />
 
 </manifest>
