@@ -34,26 +34,28 @@ def getlatestbromite():
     repo_url = f"https://api.github.com/repos/{repo_name}/releases"
     data = get(repo_url).json()
     tag_name = data[0]["tag_name"]
-    print(f"Latest version: {tag_name}")
     fname = BASE_PATH + "bromite_version.txt"
     if exists(fname):
         with open(fname, "r") as file_read:
             current_version = file_read.readline()
+            print(f"Current Version: {current_version}")
     else:
         # Since we have no priors version,apply a sane value to check
         current_version = "0.0.0.0"
 
+    print(f"Latest version : {tag_name}")
     updateallowed = False
     if version.parse(tag_name) > version.parse(current_version):
         updateallowed = input(f"Update apk assets to {tag_name}?") == "y"
     if updateallowed:
         asset_names = ["arm64_SystemWebView.apk", "arm_SystemWebView.apk"]
         for asset in data[0]["assets"]:
-            filename = BASE_PATH + str(asset["name"]).split("_")[0] + "/SystemWebView.apk"
+            asset_name = asset["name"]
+            filename = BASE_PATH + asset_name.split("_")[0] + "/SystemWebView.apk"
             filesize = asset["size"]
             if not any(item in asset["name"] for item in asset_names):
                 if DEBUG:  # Silently continue in case not DEBUG
-                    print(f"Skipped {asset['name']}")
+                    print(f"Skipped {asset_name}")
                 continue
             # Assets will have same name, just check for size too, sha matching for a later time
             if isfile(filename) and (filesize == getsize(filename)):
@@ -64,7 +66,7 @@ def getlatestbromite():
 
                 else:
                     fetchfile(asset["browser_download_url"], filename, filesize)
-                    print(f"Updated {asset} to v{tag_name}")
+                    print(f"Updated {asset_name} to v{tag_name}")
         if not DEBUG:
             writetag(tag_name)
 
