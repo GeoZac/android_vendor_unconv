@@ -1,3 +1,4 @@
+from hashlib import sha256
 from os.path import exists, isfile, getsize
 
 from clint.textui.progress import bar
@@ -5,6 +6,7 @@ from packaging import version
 from requests import get
 
 DEBUG = False
+VERIFY = False
 BASE_PATH = "vendor/extra/prebuilt/apps/bromite-webview/"
 
 
@@ -12,6 +14,15 @@ def writetag(tag):
     fname = BASE_PATH + "bromite_version.txt"
     with open(fname, "w") as file_write:
         file_write.write(tag)
+
+
+def getfilehash(file_name):
+    with open(file_name, "rb") as file:
+        sha256_hash = sha256()
+        # Read and update hash string value in blocks of 4K
+        for byte_block in iter(lambda: file.read(4096), b""):
+            sha256_hash.update(byte_block)
+        print("Filename:", file_name, "\nSHA256 checksum :", sha256_hash.hexdigest(), "\n")
 
 
 def fetchfile(url, filename, filesize):
@@ -67,6 +78,10 @@ def getlatestbromite():
                 else:
                     fetchfile(asset["browser_download_url"], filename, filesize)
                     print(f"Updated {asset_name} to v{tag_name}")
+
+            if VERIFY:
+                getfilehash(filename)
+
         if not DEBUG:
             writetag(tag_name)
 
