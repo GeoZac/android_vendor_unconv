@@ -89,4 +89,8 @@
   <project path="packages/apps/Recorder" name="LineageOS/android_packages_apps_Recorder" remote="github" revision="lineage-17.1" />
   <project path="packages/apps/Terminal" name="LineageOS/android_packages_apps_Terminal" remote="github" revision="lineage-17.1" />
 
+  <!-- Custom additions -->
+  <project path="vendor/extra" name="GeoZac/android_vendor_unconv" remote="github" revision="master" />
+  <project path="vendor/lawnchair" name="arter97/android_vendor_lawnchair" remote="github" revision="master" />
+
 </manifest>
