@@ -10,9 +10,6 @@ Custom ROMs like AICP or LineageOS will automatically call it if they find it in
 
 # Features
 
-- Use /etc/hosts similar to one created by AdAway to block ads. This might break some apps!
-    - If the hosts file is not applied when using this repo, apply [this patch](https://github.com/SpiritCroc/android_build/commit/567169f3c70c5ca9d45a0ea868140ac390790c85)
-    - To update hosts, run `./adaway/generate.sh`
 - Bromite systemWebView by default
     - (Where are the prebuilt apks you ask? They are fetched by a script when the ```source build/envsetup.sh``` is run, and will check for updates on subsequent script executions)
 - Prefers *Lawnchair* over any other launcher by default, will add to the build if makefile is found
