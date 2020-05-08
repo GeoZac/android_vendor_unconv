@@ -92,6 +92,7 @@
   <!-- Custom additions -->
   <project path="vendor/extra" name="GeoZac/android_vendor_unconv" remote="github" revision="master" />
   <project path="vendor/lawnchair" name="arter97/android_vendor_lawnchair" remote="github" revision="master" />
+  <project path="external/jetbrainsmono" name="GeoZac/android_external_jetbrainsmono" remote="github" revision="master" />
 
   <!--Upstream Clang verions-->
   <project path="prebuilts/clang/host/linux-x86/clang-r377782b" name="crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6284175" remote="github" clone-depth="1" revision="10.0"/>
