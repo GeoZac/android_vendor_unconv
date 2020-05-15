@@ -44,18 +44,24 @@ def getlatestbromite():
     repo_name = "bromite/bromite"
     repo_url = f"https://api.github.com/repos/{repo_name}/releases"
     data = get(repo_url).json()
-    tag_name = data[0]["tag_name"]
-    if data[0]["prerelease"]:
-        # Skip prerelease versions
-        return
+    index = 0
+    tag_name = data[index]["tag_name"]
+    prerelease = data[index]["prerelease"]
     fname = BASE_PATH + "bromite_version.txt"
     if exists(fname):
+        if prerelease:
+            # Skip prerelease versions
+            return
         with open(fname, "r") as file_read:
             current_version = file_read.readline()
             print(f"Current Version: {current_version}")
     else:
         # Since we have no priors version,apply a sane value to check
         current_version = "0.0.0.0"
+        # Also check if the latest version is a pre-release, in which case, get the previos version
+        if prerelease:
+            index += 1
+            tag_name = data[index]["tag_name"]
 
     print(f"Latest version : {tag_name}")
     updateallowed = False
@@ -63,11 +69,11 @@ def getlatestbromite():
         updateallowed = input(f"Update apk assets to {tag_name}?") == "y"
     if updateallowed:
         asset_names = ["arm64_SystemWebView.apk", "arm_SystemWebView.apk"]
-        for asset in data[0]["assets"]:
+        for asset in data[index]["assets"]:
             asset_name = asset["name"]
             filename = BASE_PATH + asset_name.split("_")[0] + "/SystemWebView.apk"
             filesize = asset["size"]
-            if not any(item in asset["name"] for item in asset_names):
+            if not any(item in asset_name for item in asset_names):
                 if DEBUG:  # Silently continue in case not DEBUG
                     print(f"Skipped {asset_name}")
                 continue
