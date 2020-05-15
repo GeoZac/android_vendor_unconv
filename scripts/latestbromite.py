@@ -45,6 +45,9 @@ def getlatestbromite():
     repo_url = f"https://api.github.com/repos/{repo_name}/releases"
     data = get(repo_url).json()
     tag_name = data[0]["tag_name"]
+    if data[0]["prerelease"]:
+        # Skip prerelease versions
+        return
     fname = BASE_PATH + "bromite_version.txt"
     if exists(fname):
         with open(fname, "r") as file_read:
