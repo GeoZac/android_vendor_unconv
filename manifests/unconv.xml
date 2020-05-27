@@ -50,7 +50,6 @@
   <remove-project name="device/ti/beagle-x15-kernel" />
   <remove-project name="device/sample" />
   <remove-project name="platform/external/ARMComputeLibrary" />
-  <remove-project name="platform/packages/apps/Calendar" />
   <remove-project name="platform/packages/apps/Car/externallibs" />
   <remove-project name="platform/packages/apps/DevCamera" />
   <remove-project name="platform/packages/apps/LegacyCamera" />
@@ -78,6 +77,7 @@
   <remove-project name="AICP/packages_apps_Updater" />
   <remove-project name="AICP/prebuilts_clang_host_linux-x86" />
   <remove-project name="LineageOS/android_packages_apps_Email" />
+  <remove-project name="LineageOS/android_packages_apps_Etar" />
   <remove-project name="LineageOS/android_packages_apps_Exchange" />
   <remove-project name="LineageOS/android_packages_apps_UnifiedEmail" />
   <remove-project name="LineageOS/android_packages_apps_Nfc" />
