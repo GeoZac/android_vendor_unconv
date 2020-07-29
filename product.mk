@@ -17,3 +17,7 @@ PRODUCT_PACKAGE_OVERLAYS += $(VENDOR_EXTRA_PATH)/overlay/common
 # Extra Font Overlays
 PRODUCT_PACKAGES += \
     FontJetBrainsMono
+
+# Add font families to fonts-customization.xml
+ADDITIONAL_FONTS_FILE += \
+   external/jetbrainsmono/fonts-jetbrains.xml
