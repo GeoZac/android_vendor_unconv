@@ -22,4 +22,12 @@ Custom ROMs like AICP or LineageOS will automatically call it if they find it in
     - Disable All Caps in materials buttons
     - Enable Lockscreen shortcuts by default
     - Allow editing smart replies before sending
+    - Shows empty wifi icon if not connected 
+    - Show memory usage on app info screens
     - ~Enable lockscreen rotation for all devices by default~
+- Add some more fonts (The font-families data is injected into the vendor's fonts_customization.xml, if supported)
+    - JetBrains Mono
+    - Lato
+    - Rubik
+- Provides a improved hosts file for the build system to improve ad-blocking (if supported)
+- Skips Changelog generation (if supported)
