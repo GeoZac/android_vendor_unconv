@@ -26,3 +26,7 @@ PRODUCT_PACKAGES += \
 ADDITIONAL_FONTS_FILE += \
    external/jetbrainsmono/fonts-jetbrains.xml \
    vendor/extra/fonts/fonts-unconv.xml
+
+# Exclude some undesired packages
+PRODUCT_PACKAGES += \
+    NukePackages
