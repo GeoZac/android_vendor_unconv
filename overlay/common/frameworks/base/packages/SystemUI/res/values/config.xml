@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-   
-   <bool name="quick_settings_show_full_alarm">true</bool>
-
     <!-- Show mic or phone affordance on Keyguard -->
     <bool name="config_keyguardShowLeftAffordance">true</bool>
 
