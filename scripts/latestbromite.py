@@ -1,5 +1,5 @@
 from hashlib import sha256
-from os.path import exists, isfile, getsize
+from os.path import exists, isfile
 from urllib.request import urlopen
 
 from clint.textui.progress import bar
@@ -56,6 +56,7 @@ def getassethashes(assets, files_to_hash):
 
 def updateassets(tag, assets):
     asset_names = ["arm64_SystemWebView.apk", "arm_SystemWebView.apk"]
+    asset_hashes = getassethashes(assets, asset_names)
     for asset in assets:
         asset_name = asset["name"]
         filename = BASE_PATH + asset_name.split("_")[0] + "/SystemWebView.apk"
@@ -64,8 +65,8 @@ def updateassets(tag, assets):
             if DEBUG:  # Silently continue in case not DEBUG
                 print(f"Skipped {asset_name}")
             continue
-        # Assets will have same name, just check for size too, sha matching for a later time
-        if isfile(filename) and (filesize == getsize(filename)):
+        # Assets will have same name, just check for SHA256 hash too
+        if isfile(filename) and getfilehash(filename) == asset_hashes[asset_name]:
             print(f"{filename} already up-to date")
         else:
             if DEBUG:
