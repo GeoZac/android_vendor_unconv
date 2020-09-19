@@ -93,7 +93,7 @@ def getlatestbromite():
     fname = BASE_PATH + "bromite_version.txt"
     if exists(fname):
         if prerelease:
-            # Skip prerelease versions
+            # Skip pre-release versions
             return
         with open(fname, "r") as file_read:
             current_version = file_read.readline()
@@ -101,7 +101,7 @@ def getlatestbromite():
     else:
         # Since we have no priors version,apply a sane value to check
         current_version = "0.0.0.0"
-        # Also check if the latest version is a pre-release, in which case, get the previos version
+        # Also check if the latest version is a pre-release, in which case, get the previous version
         if prerelease:
             index += 1
             tag_name = data[index]["tag_name"]
@@ -109,7 +109,7 @@ def getlatestbromite():
     print(f"Latest version : {tag_name}")
     updateallowed = False
     if version.parse(tag_name) > version.parse(current_version):
-        updateallowed = input(f"Update apk assets to {tag_name}?") == "y"
+        updateallowed = input(f"Update apk assets to {tag_name}? :") == "y"
     if updateallowed:
         updateassets(tag_name, data[index]["assets"])
 
