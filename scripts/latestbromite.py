@@ -1,5 +1,6 @@
 from hashlib import sha256
 from os.path import exists, isfile, getsize
+from urllib.request import urlopen
 
 from clint.textui.progress import bar
 from packaging import version
@@ -38,6 +39,19 @@ def fetchfile(url, filename, filesize):
                 out_file.write(chunk)
                 out_file.flush()
     out_file.close()
+
+
+def getassethashes(assets, files_to_hash):
+    for asset in assets:
+        hashes = {}
+        if "sha256.txt" in asset["name"]:
+            for line in urlopen(asset["browser_download_url"]):
+                line = line.decode('utf-8')
+                if any(x in line for x in files_to_hash):
+                    file_hash = line.split(" ")
+                    hashes[file_hash[-1].rstrip()] = file_hash[0]
+            return hashes
+    return None
 
 
 def updateassets(tag, assets):
