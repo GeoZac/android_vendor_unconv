@@ -1,8 +1,5 @@
 VENDOR_EXTRA_PATH := vendor/extra
 
-# Include Lawnchair 
-$(call inherit-product-if-exists, vendor/lawnchair/lawnchair.mk)
-
 $(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
 $(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
 $(call inherit-product-if-exists, external/jetbrainsmono/fonts.mk)
