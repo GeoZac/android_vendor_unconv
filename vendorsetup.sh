@@ -5,7 +5,9 @@ echo "Extra vendor detected"
 
 # Update custom hosts including my changes
 if [ -d "external/hosts/" ]; then
+    echo "Merging personal changes to hosts file"
     /usr/bin/python3 external/hosts/updateHostsFile.py -n -m
+    echo "Replacing duplicates domains with wildcards in hosts file"
     /usr/bin/python3 vendor/extra/scripts/wildcardhosts.py external/hosts/hosts_unconv vendor/extra/adaway/
 fi
 
