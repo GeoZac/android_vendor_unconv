@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.aicp.overlay.corner_radius.moar_round.android"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <overlay
+        android:targetPackage="android"
+        android:category="aicp.corner_radius"
+        android:priority="1" />
+
+    <application
+        android:label="@string/theming_corner_radius_moar_round"
+        android:hasCode="false" />
+
+</manifest>
