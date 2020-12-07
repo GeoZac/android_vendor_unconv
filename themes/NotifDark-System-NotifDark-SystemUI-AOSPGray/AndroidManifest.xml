@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.aicp.overlay.notif_dark.aospgray.android"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <overlay
+        android:targetPackage="android"
+        android:category="aicp.notif_dark"
+        android:priority="1" />
+
+    <application
+        android:label="@string/theming_notif_dark_aospgray"
+        android:hasCode="false" />
+
+</manifest>

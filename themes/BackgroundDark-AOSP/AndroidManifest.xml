@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.aicp.overlay.bg_dark.aosp.android"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <overlay
+        android:targetPackage="android"
+        android:category="aicp.bg_dark"
+        android:priority="1" />
+
+    <application
+        android:label="@string/theming_bg_dark_aosp"
+        android:hasCode="false" />
+
+</manifest>
