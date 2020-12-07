@@ -28,6 +28,14 @@ ADDITIONAL_FONTS_FILE += \
 PRODUCT_PACKAGES += \
     NukePackages
 
+# Some theming overlays
+PRODUCT_PACKAGES += \
+   CornerRadius-Moar_Round \
+   QsBgDark-AOSPGray \
+   NotifDark-SystemUI-AOSPGray \
+   BackgroundDark-AOSP \
+   NotifDark-System-NotifDark-SystemUI-AOSPGray
+
 # Add some nostalgic tunes
 PRODUCT_COPY_FILES += \
     frameworks/base/data/sounds/ringtones/ogg/Dione_48k.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Unconv.ogg
