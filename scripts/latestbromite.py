@@ -6,7 +6,7 @@ from clint.textui.progress import bar
 from packaging import version
 from requests import get
 
-ENABLED = False
+ENABLED = True
 DEBUG = False
 VERIFY = False
 BASE_PATH = "vendor/extra/prebuilt/apps/bromite-webview/"
