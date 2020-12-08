@@ -12,6 +12,9 @@ PRODUCT_PACKAGES += \
 # Extra overlays
 PRODUCT_PACKAGE_OVERLAYS += $(VENDOR_EXTRA_PATH)/overlay/common
 
+# Allow overlays to be excluded from enforcing RRO
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(VENDOR_EXTRA_PATH)/overlay/common
+
 # Extra Font Overlays
 PRODUCT_PACKAGES += \
     FontJetBrainsMono \
