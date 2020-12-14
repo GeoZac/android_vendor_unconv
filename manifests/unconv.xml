@@ -90,8 +90,8 @@
   <remove-project name="omnirom/android_packages_apps_Phonograph" />
 
   <!-- Lineage Alternatives -->
-  <project path="packages/apps/Recorder" name="LineageOS/android_packages_apps_Recorder" remote="github" revision="lineage-17.1" />
-  <project path="packages/apps/Terminal" name="LineageOS/android_packages_apps_Terminal" remote="github" revision="lineage-17.1" />
+  <project path="packages/apps/Recorder" name="LineageOS/android_packages_apps_Recorder" remote="github" revision="lineage-18.1" />
+  <project path="packages/apps/Terminal" name="LineageOS/android_packages_apps_Terminal" remote="github" revision="lineage-18.1" />
 
   <!-- Custom additions -->
   <project path="vendor/extra" name="GeoZac/android_vendor_unconv" remote="github" revision="master" />
