@@ -23,7 +23,6 @@ PRODUCT_PACKAGES += \
 
 # Add font families to fonts-customization.xml
 ADDITIONAL_FONTS_FILE += \
-   external/jetbrainsmono/fonts-jetbrains.xml \
    vendor/extra/fonts/fonts-unconv.xml
 
 # Exclude some undesired packages
