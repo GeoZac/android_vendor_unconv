@@ -4,7 +4,7 @@ echo "Extra vendor detected"
 /usr/bin/python3 vendor/extra/scripts/latestbromite.py
 
 # Update custom hosts including my changes
-if [ -d "external/hosts/" ]; then
+if [ -d "external/hosts/extensions/unconv/" ]; then
     echo "Merging personal changes to hosts file"
     /usr/bin/python3 external/hosts/updateHostsFile.py -n -m
     echo "Replacing duplicates domains with wildcards in hosts file"
