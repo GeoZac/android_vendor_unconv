@@ -478,6 +478,10 @@ def replace_with_wildcards(args):
         ".ziyu.net",
     ]
 
+    # Inform me of any duplicates
+    if len(spam_domains) != len(set(spam_domains)):
+        print("Well! you have duplicates")
+
     if len(args) == 2:
         input_file_path = args[0]
         output_file_path = args[1]
