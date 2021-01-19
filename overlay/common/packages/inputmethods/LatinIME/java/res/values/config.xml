@@ -21,4 +21,8 @@
 <resources>
     <dimen name="config_suggestions_strip_horizontal_margin">0dp</dimen>
     <dimen name="config_suggestions_strip_edge_key_width">0dp</dimen>
+	
+    <fraction name="config_emoji_keyboard_key_width">12.5%p</fraction>
+    <fraction name="config_emoji_keyboard_row_height">20%p</fraction>
+    <integer name="config_emoji_keyboard_max_page_key_count">40</integer>
 </resources>
