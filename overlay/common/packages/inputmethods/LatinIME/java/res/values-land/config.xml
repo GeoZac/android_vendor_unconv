@@ -2,7 +2,7 @@
 <!--
 /*
 **
-** Copyright 2010, The Android Open Source Project
+** Copyright 2011, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -18,12 +18,11 @@
 */
 -->
 
+<!-- Configuration values for Small Phone Landscape. -->
 <resources>
-    <dimen name="config_suggestions_strip_horizontal_margin">0dp</dimen>
-    <dimen name="config_suggestions_strip_edge_key_width">0dp</dimen>
-	
-	<!-- Emoji keyboard -->
-    <fraction name="config_emoji_keyboard_key_width">12.5%p</fraction>  <!-- 8 cols -->
-    <fraction name="config_emoji_keyboard_row_height">20%p</fraction>  <!-- 5 rows -->
-    <integer name="config_emoji_keyboard_max_page_key_count">40</integer>  <!-- 8 * 5 -->
+
+    <!-- Emoji keyboard -->
+    <fraction name="config_emoji_keyboard_key_width">10%p</fraction>  <!-- 10 cols -->
+    <fraction name="config_emoji_keyboard_row_height">33.3%p</fraction>  <!-- 3 rows -->
+    <integer name="config_emoji_keyboard_max_page_key_count">30</integer>  <!-- 10 * 3 -->
 </resources>
