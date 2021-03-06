@@ -31,6 +31,7 @@
   <remove-project name="platform/packages/apps/DevCamera" />
   <remove-project name="platform/packages/apps/LegacyCamera" />
   <remove-project name="platform/packages/apps/Music" />
+  <remove-project name="platform/packages/apps/OnDeviceAppPrediction" />
   <remove-project name="platform/packages/apps/SoundRecorder" />
   <remove-project name="platform/packages/apps/Terminal" />
   <remove-project name="platform/packages/modules/TestModule" />
@@ -65,6 +66,7 @@
   <project path="packages/apps/Terminal" name="LineageOS/android_packages_apps_Terminal" remote="github" revision="lineage-18.1" />
 
   <!-- Custom additions -->
+  <project path="packages/apps/OnDeviceAppPrediction" name="GeoZac/android_packages_apps_OnDeviceAppPrediction" remote="github" revision="r11.1" />
   <project path="vendor/extra" name="GeoZac/android_vendor_unconv" remote="github" revision="master" />
   <project path="vendor/lawnchair" name="arter97/android_vendor_lawnchair" remote="github" revision="master" />
   <project path="external/jetbrainsmono" name="GeoZac/android_external_jetbrainsmono" remote="github" revision="master" />
