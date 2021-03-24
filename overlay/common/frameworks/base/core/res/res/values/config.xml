@@ -11,4 +11,7 @@
          rotations as the default behavior. -->
     <bool name="config_allowAllRotations">true</bool>
 
+    <!-- Default data warning level in mb -->
+    <integer name="default_data_warning_level_mb">30720</integer>
+
 </resources>
