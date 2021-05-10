@@ -1,11 +1,11 @@
-from os.path import join
+from os.path import realpath, dirname, join
 import sys
 
 
 def replace_with_wildcards(args):
     new = []
 
-    with open("spam_domains", "r") as index_file:
+    with open(join(dirname(realpath(__file__)), "spam_domains"), "r") as index_file:
         spam_domains = index_file.read().splitlines()
 
     # Inform me of any duplicates
