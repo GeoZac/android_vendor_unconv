@@ -76,6 +76,7 @@
 	<!-- AICP packages-->
 	<remove-project name="AICP/frameworks_opt_jamesdsp"/>
 	<remove-project name="AICP/packages_apps_JamesDSPManager"/>
+	<remove-project name="AICP/packages_apps_OmniStyle"/>
 	<remove-project name="AICP/packages_apps_TilesWallpaper"/>
 	<remove-project name="AICP/packages_apps_Updater"/>
 	<remove-project name="AICP/prebuilts_clang_host_linux-x86"/>
@@ -92,6 +93,7 @@
 	<project path="packages/apps/Terminal" name="LineageOS/android_packages_apps_Terminal" remote="github" revision="lineage-18.1"/>
 
 	<!-- Custom additions -->
+	<project path="packages/apps/OmniStyle" name="GeoZac/android_packages_apps_OmniStyle" remote="github" revision="r11.1"/>
 	<project path="packages/apps/OnDeviceAppPrediction" name="GeoZac/android_packages_apps_OnDeviceAppPrediction" remote="github" revision="r11.1"/>
 	<project path="vendor/extra" name="GeoZac/android_vendor_unconv" remote="github" revision="master"/>
 	<project path="vendor/lawnchair" name="arter97/android_vendor_lawnchair" remote="github" revision="master"/>
