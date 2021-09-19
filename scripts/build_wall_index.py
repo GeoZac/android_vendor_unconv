@@ -62,7 +62,7 @@ def build_index():
 
 def generate(arg):
     app_json = build_index()
-    raw_url = push_gist(app_json)
+    raw_url = push_gist(app_json).rjust(8)
     placeholder_line_found = False
     with open(join(dirname(realpath(__file__)), "stub.xml"), "r") as input_file:
         with open(join(arg, "config.xml"), "w") as output_file:
