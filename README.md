@@ -18,7 +18,7 @@ Custom ROMs like AICP or LineageOS will automatically call it if they find it in
     - Enable rotation for all directions by default
     - Show Internal storage by default in DocumentsUI (Files) app and,
     - Show the Internal storage root on opening
-    - Sets corners in searchbar and suggestion cards in Settings app
+    - Set corners in searchbar and suggestion cards in Settings app
     - Disable All Caps in materials buttons
     - Enable Lockscreen shortcuts by default
     - Allow editing smart replies before sending
@@ -29,5 +29,5 @@ Custom ROMs like AICP or LineageOS will automatically call it if they find it in
     - JetBrains Mono
     - Lato
     - Rubik
-- Provides a improved hosts file for the build system to improve ad-blocking (if supported)
+- Provides an improved hosts file for the build system to improve ad-blocking (if supported)
 - Skips Changelog generation (if supported)
