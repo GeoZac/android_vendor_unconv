@@ -36,7 +36,8 @@ PRODUCT_PACKAGES += \
    QsBgDark-AOSPGray \
    NotifDark-SystemUI-AOSPGray \
    BackgroundDark-AOSP \
-   NotifDark-System-NotifDark-SystemUI-AOSPGray
+   NotifDark-System-NotifDark-SystemUI-AOSPGray \
+   BackgroundLight-Blue
 
 # Add some nostalgic tunes
 PRODUCT_COPY_FILES += \

@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.aicp.overlay.bg_light.blue.android"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <overlay
+        android:targetPackage="android"
+        android:category="aicp.bg_light"
+        android:priority="1" />
+
+    <application
+        android:label="@string/theming_bg_light_blue"
+        android:hasCode="false" />
+
+</manifest>
