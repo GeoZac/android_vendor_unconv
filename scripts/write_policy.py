@@ -7,6 +7,9 @@
 # Fixes are saved to fixes.txt
 
 import re
+
+fixes = []
+
 with open("denials.txt") as denfile:
     data=denfile.read()
 data=data.split("\n")
@@ -32,4 +35,6 @@ with open("fixes.txt","w") as fixfile:
         fix+=se_context
         fix+=";"
         fix+="\n"
-        fixfile.write(fix)
+        if fix not in fixes:
+            fixes.append(fix)
+            fixfile.write(fix)
