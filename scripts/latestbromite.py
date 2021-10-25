@@ -3,6 +3,7 @@ from os.path import exists, isfile
 from urllib.request import urlopen
 
 from clint.textui.progress import bar
+from inputimeout import inputimeout, TimeoutOccurred
 from packaging import version
 from requests import get
 
@@ -110,7 +111,11 @@ def getlatestbromite():
     print(f"Latest version : {tag_name}")
     updateallowed = False
     if version.parse(tag_name) > version.parse(current_version):
-        updateallowed = input(f"Update apk assets to {tag_name}? :") == "y"
+        try:
+            console_input = inputimeout(prompt=f"Update apk assets to {tag_name}? :", timeout=5)
+        except TimeoutOccurred:
+            console_input = "n"
+        updateallowed = console_input == "y"
     if updateallowed:
         updateassets(tag_name, data[index]["assets"])
 
