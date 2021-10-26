@@ -14,7 +14,7 @@ LOG_LEVELS = {
 
 
 def logcat_spammers(args):
-    with open(args.file, "r", errors='replace') as file_iput:
+    with open(args.file, "r", errors="replace") as file_iput:
         lines = file_iput.readlines()
     domains = []
     for line in lines:
@@ -37,7 +37,7 @@ def logcat_spammers(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('file')
-    parser.add_argument('-L', type=int, default=6, help='Filter to log levels')
+    parser.add_argument("file")
+    parser.add_argument("-L", type=int, default=6, help="Filter to log levels")
     argv = parser.parse_args()
     logcat_spammers(argv)

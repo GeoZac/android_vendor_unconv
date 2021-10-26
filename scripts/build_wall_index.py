@@ -11,24 +11,24 @@ from requests import get, patch
 
 
 def push_gist(gist_cn):
-    gist_tn = getenv('GH_GIST_TOKEN')
+    gist_tn = getenv("GH_GIST_TOKEN")
     gist_fn = "wall_index.json"
     gist_id = "e4c7f3c3c451b859c7c70e43837e08c2"
 
-    headers = {'Authorization': f'token {gist_tn}'}
+    headers = {"Authorization": f"token {gist_tn}"}
     g_response = patch(
-        'https://api.github.com/gists/' + gist_id,
-        data=dumps({'files': {gist_fn: {"content": gist_cn}}}),
-        headers=headers
+        "https://api.github.com/gists/" + gist_id,
+        data=dumps({"files": {gist_fn: {"content": gist_cn}}}),
+        headers=headers,
     )
-    return g_response.json()['files'][gist_fn]['raw_url']
+    return g_response.json()["files"][gist_fn]["raw_url"]
 
 
 def build_index():
     params = {
-        'query': 'wallpapers',
-        'orientation': 'portrait',
-        'client_id': getenv('UNSPLASH_KEY')
+        "query": "wallpapers",
+        "orientation": "portrait",
+        "client_id": getenv("UNSPLASH_KEY"),
     }
 
     rand_page = randint(0, 10)
