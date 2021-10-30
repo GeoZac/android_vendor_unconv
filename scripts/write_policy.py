@@ -6,35 +6,47 @@
 # Save all denials line by line to denials.txt in the same folder as code
 # Fixes are saved to fixes.txt
 
-import re
+from re import search
+from sys import argv
 
-fixes = []
+skip_contexts = [
+    "gmscore_app",
+    "untrusted_app",
+    "vendor_install_recovery"
+]
 
-with open("denials.txt") as denfile:
-    data=denfile.read()
-data=data.split("\n")
-data.remove(data[-1])
-with open("fixes.txt","w") as fixfile:
-    for i in data:
-        test=re.search("{",i)
-        test2=re.search("}",i)
-        se_context=i[test.span()[0]:test2.span()[0]+1]
-        test=re.search("scontext",i)
-        scontext=i[(test.span()[0]):].split(":")[2]
-        test=re.search("tcontext",i)
-        tcontext=i[(test.span()[0]):].split(":")[2]
-        test=re.search("tclass",i)
-        tclass=i[(test.span()[0]):].split("=")[1].split(" ")[0]
-        fix="allow "
-        fix+=scontext
-        fix+=" "
-        fix+=tcontext
-        fix+=":"
-        fix+=tclass
-        fix+=" "
-        fix+=se_context
-        fix+=";"
-        fix+="\n"
+
+def write_policy():
+    fixes = []
+
+    with open(argv[1], "r", encoding="utf8") as den_file:
+        denials = den_file.readlines()
+
+    for denial in denials:
+        if "avc: denied" not in denial:
+            continue
+
+        test = search("{", denial)
+        test2 = search("}", denial)
+        se_context = denial[test.span()[0]:test2.span()[0] + 1]
+        test = search("scontext", denial)
+        scontext = denial[(test.span()[0]):].split(":")[2]
+        if scontext in skip_contexts:
+            continue
+        test = search("tcontext", denial)
+        tcontext = denial[(test.span()[0]):].split(":")[2]
+        test = search("tclass", denial)
+        tclass = denial[(test.span()[0]):].split("=")[1].split(" ")[0]
+        fix = f"allow {scontext} {tcontext}:{tclass} {se_context};\n"
         if fix not in fixes:
             fixes.append(fix)
-            fixfile.write(fix)
+
+    # Get it sorted so i can make macros out of it
+    fixes.sort()
+
+    with open("fixes.txt", "w") as fix_file:
+        fix_file.writelines(fixes)
+
+
+if __name__ == "__main__":
+    write_policy()
