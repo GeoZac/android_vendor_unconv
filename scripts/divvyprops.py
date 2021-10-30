@@ -19,6 +19,12 @@ VENDOR_LESS = True
 # So, foo becomes true because vendor has higher priority than system.
 
 
+def get_block_list():
+    with open("useless_props.txt", "r") as infile:
+        props = infile.read().splitlines()
+        return [prop.split("=")[0] for prop in props]
+
+
 def combine_prop_keys(combined_props, props_to_combine, partition):
     combined_prop_keys = [props[0] for props in combined_props]
     for dump_systemext_prop in props_to_combine:
@@ -33,6 +39,7 @@ def combine_prop_keys(combined_props, props_to_combine, partition):
 
 
 def read_prop_file(prop_file, dump=False, footer=None):
+    blocked = get_block_list()
     props = []
     with open(prop_file, mode="r") as in_prop:
         raw_props = in_prop.read().splitlines()
@@ -46,6 +53,10 @@ def read_prop_file(prop_file, dump=False, footer=None):
             continue
         try:
             key, value = raw_prop.split("=")
+            if key in blocked:
+                if DEBUG:
+                    print("Skipping blocked prop", key)
+                continue
             props.append([key, value])
         except ValueError:
             if DEBUG:
@@ -201,7 +212,7 @@ def divvy_props():
         3: "odm",
         4: "product",
     }
-    
+
     tree_dir = getcwd() + "\\" + argv[1]
     dump_dir = getcwd() + "\\" + argv[2]
 
