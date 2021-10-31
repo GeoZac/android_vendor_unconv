@@ -22,13 +22,13 @@ Custom ROMs like AICP or LineageOS will automatically call it if they find it in
     - Disable All Caps in materials buttons
     - Enable Lockscreen shortcuts by default
     - Allow editing smart replies before sending
-    - Shows empty wifi icon if not connected 
+    - Shows empty wifi icon if not connected
     - Show memory usage on app info screens
     - Default to full gesture navigation
     - Bump up default data limit to 30GB, the default 2GB is too low
-    - Overlay the AOSP brightness thumb vector 
+    - Overlay the AOSP brightness thumb vector
     - Allow more suggestions on AOSP keyboard
-    - Hide the voice input key on AOSP keyboard 
+    - Hide the voice input key on AOSP keyboard
     - Show more emoji on the emoji selector
     - ~Enable lockscreen rotation for all devices by default~
 - Add some more fonts (The font-families data is injected into the vendor's fonts_customization.xml, if supported)
