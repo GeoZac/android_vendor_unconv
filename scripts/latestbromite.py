@@ -12,6 +12,11 @@ DEBUG = False
 VERIFY = False
 BASE_PATH = "vendor/extra/prebuilt/apps/bromite-webview/"
 
+ASSET_NAMES = [
+    "arm64_SystemWebView.apk",
+    "arm_SystemWebView.apk",
+]
+
 
 def write_tag(tag):
     f_name = BASE_PATH + "bromite_version.txt"
@@ -57,13 +62,12 @@ def get_asset_hashes(assets, files_to_hash):
 
 
 def update_assets(tag, assets):
-    asset_names = ["arm64_SystemWebView.apk", "arm_SystemWebView.apk"]
-    asset_hashes = get_asset_hashes(assets, asset_names)
+    asset_hashes = get_asset_hashes(assets, ASSET_NAMES)
     for asset in assets:
         asset_name = asset["name"]
         filename = BASE_PATH + asset_name.split("_")[0] + "/SystemWebView.apk"
         file_size = asset["size"]
-        if not any(item in asset_name for item in asset_names):
+        if not any(item in asset_name for item in ASSET_NAMES):
             if DEBUG:  # Silently continue in case not DEBUG
                 print(f"Skipped {asset_name}")
             continue
@@ -90,6 +94,7 @@ def get_latest_bromite():
     repo_url = f"https://api.github.com/repos/{repo_name}/releases"
     data = get(repo_url).json()
     index = 0
+    skip_version = False
     tag_name = data[index]["tag_name"]
     pre_release = data[index]["prerelease"]
     f_name = BASE_PATH + "bromite_version.txt"
@@ -105,8 +110,19 @@ def get_latest_bromite():
         current_version = "0.0.0.0"
         # Also check if the latest version is a pre-release, in which case, get the previous version
         if pre_release:
-            index += 1
-            tag_name = data[index]["tag_name"]
+            print(f"Skipping Pre-release version: {tag_name}")
+            skip_version = True
+
+    # Skip upgrading in case a release doesn't have all the assets we require
+    for asset_name in ASSET_NAMES:
+        if asset_name not in data[index]["assets"]:
+            print(f"No {asset_name} found in v{tag_name}")
+            skip_version = True
+            break
+
+    if skip_version:
+        index += 1
+        tag_name = data[index]["tag_name"]
 
     print(f"Latest version : {tag_name}")
     update_allowed = False
