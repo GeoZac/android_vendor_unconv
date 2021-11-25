@@ -113,9 +113,12 @@ def get_latest_bromite():
             print(f"Skipping Pre-release version: {tag_name}")
             skip_version = True
 
+    # Unpack available asset's names to a list
+    available_assets = [asset["name"] for asset in data[index]["assets"]]
+
     # Skip upgrading in case a release doesn't have all the assets we require
     for asset_name in ASSET_NAMES:
-        if asset_name not in data[index]["assets"]:
+        if asset_name not in available_assets:
             print(f"No {asset_name} found in v{tag_name}")
             skip_version = True
             break
