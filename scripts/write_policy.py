@@ -22,6 +22,9 @@ def write_policy():
     with open(argv[1], "r", encoding="utf8") as den_file:
         denials = den_file.readlines()
 
+    # Write the source filename as a header
+    fixes.append(f"# {argv[1]}\n")
+
     for denial in denials:
         if "avc: denied" not in denial:
             continue
