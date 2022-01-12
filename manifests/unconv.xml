@@ -10,11 +10,11 @@
     <remove-project name="device/generic/art"/>
     <remove-project name="device/generic/car"/>
     <remove-project name="device/generic/common"/>
-    <remove-project name="device/google/cuttlefish"/>
+    <!--<remove-project name="device/google/cuttlefish"/>-->
     <remove-project name="device/generic/goldfish"/>
     <remove-project name="device/generic/goldfish-opengl"/>
-    <remove-project name="device/generic/vulkan-cereal"/>
-    <remove-project name="device/google/cuttlefish_prebuilts"/>
+    <!--<remove-project name="device/generic/vulkan-cereal"/>-->
+    <!--<remove-project name="device/google/cuttlefish_prebuilts"/>-->
     <!--<remove-project name="device/google/cuttlefish_kernel"/>-->
     <!--<remove-project name="device/google/cuttlefish_vmm"/>-->
     <remove-project name="device/generic/mini-emulator-arm64"/>
@@ -70,13 +70,13 @@
     <remove-project name="device/ti/beagle-x15-kernel"/>
     <remove-project name="device/sample"/>
 
-    <remove-project name="kernel/prebuilts/5.10/arm64"/>
+    <!--<remove-project name="kernel/prebuilts/5.10/arm64"/>-->
     <remove-project name="kernel/prebuilts/5.10/x86-64"/>
     <remove-project name="kernel/prebuilts/5.4/arm64"/>
     <remove-project name="kernel/prebuilts/5.4/x86-64"/>
     <remove-project name="kernel/prebuilts/common-modules/virtual-device/4.19/arm64"/>
     <remove-project name="kernel/prebuilts/common-modules/virtual-device/4.19/x86-64"/>
-    <remove-project name="kernel/prebuilts/common-modules/virtual-device/5.10/arm64"/>
+    <!--<remove-project name="kernel/prebuilts/common-modules/virtual-device/5.10/arm64"/>-->
     <remove-project name="kernel/prebuilts/common-modules/virtual-device/5.10/x86-64"/>
     <remove-project name="kernel/prebuilts/common-modules/virtual-device/5.4/arm64"/>
     <remove-project name="kernel/prebuilts/common-modules/virtual-device/5.4/x86-64"/>
@@ -108,7 +108,7 @@
     -->
     <!-- <remove-project name="platform/packages/apps/Car/Notification" /> -->
     <remove-project name="platform/packages/apps/Car/Radio"/>
-    <remove-project name="platform/packages/apps/Car/RotaryController"/>
+    <!--<remove-project name="platform/packages/apps/Car/RotaryController"/>-->
     <remove-project name="platform/packages/apps/Car/Settings"/>
     <remove-project name="platform/packages/apps/Car/SystemUpdater"/>
     <remove-project name="platform/packages/apps/Car/tests"/>
