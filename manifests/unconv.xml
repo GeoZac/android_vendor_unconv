@@ -86,6 +86,9 @@
     <remove-project name="kernel/prebuilts/4.19/arm64"/>
     <remove-project name="kernel/tests"/>
 
+    <remove-project name="platform/packages/modules/BootPrebuilt/5.4/arm64"/>
+    <remove-project name="platform/packages/modules/BootPrebuilt/5.10/arm64"/>
+
     <!-- Not building for cars... -->
     <remove-project name="platform/packages/apps/Car/Calendar"/>
     <remove-project name="platform/packages/apps/Car/Cluster"/>
