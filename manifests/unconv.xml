@@ -109,7 +109,11 @@
     <!-- <remove-project name="platform/packages/apps/Car/Notification" /> -->
     <remove-project name="platform/packages/apps/Car/Radio"/>
     <!--<remove-project name="platform/packages/apps/Car/RotaryController"/>-->
-    <remove-project name="platform/packages/apps/Car/Settings"/>
+    <!--
+    packages/services/Car (which cannot be untracked)
+    depends on the Settings package.
+    -->
+    <!--<remove-project name="platform/packages/apps/Car/Settings"/>-->
     <remove-project name="platform/packages/apps/Car/SystemUpdater"/>
     <remove-project name="platform/packages/apps/Car/tests"/>
 
