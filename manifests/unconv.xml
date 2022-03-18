@@ -157,7 +157,7 @@
 
     <!-- Custom additions -->
     <!--<project path="packages/apps/OmniStyle" name="GeoZac/android_packages_apps_OmniStyle" remote="github" revision="r11.1"/>-->
-    <!--<project path="packages/apps/OnDeviceAppPrediction" name="GeoZac/android_packages_apps_OnDeviceAppPrediction" remote="github" revision="r11.1"/>-->
+    <project path="packages/apps/OnDeviceAppPrediction" name="GeoZac/android_packages_apps_OnDeviceAppPrediction" remote="github" revision="s12.1"/>
     <!--<project path="vendor/extra" name="GeoZac/android_vendor_unconv" remote="github" revision="master"/>-->
     <!--<project path="external/jetbrainsmono" name="GeoZac/android_external_jetbrainsmono" remote="github" revision="master"/>-->
 
