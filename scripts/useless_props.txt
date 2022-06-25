@@ -9,6 +9,8 @@ net.bt.name
 persist.audio.button_jack.profile
 persist.audio.button_jack.switch
 persist.backup.ntpServer
+persist.binder.check.enable
+persist.binder.check.size
 persist.camera.privapp.list
 persist.debug.coresight.config
 persist.enable_task_snapshots
@@ -127,7 +129,6 @@ ro.product.cpu.abilist64
 ro.product.cuptsm
 ro.product.locale
 ro.product.manufacturer
-ro.product.mod_device
 ro.product.mod_device
 ro.product.property_source_order
 ro.product.system.brand
