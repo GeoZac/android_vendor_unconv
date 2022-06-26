@@ -204,7 +204,7 @@ def collect_props_from_tree(props_dir):
     ]
 
 
-def divvy_props():
+def divvy_props(arg1, arg2):
     partitions = {
         0: "system",
         1: "system_ext",
@@ -213,32 +213,32 @@ def divvy_props():
         4: "product",
     }
 
-    tree_dir = getcwd() + "\\" + argv[1]
-    dump_dir = getcwd() + "\\" + argv[2]
+    tree_dir = getcwd() + "\\" + arg1
+    dump_dir = getcwd() + "\\" + arg2
 
     dump_props = collect_props_from_dump(dump_dir)
     tree_props = collect_props_from_tree(tree_dir)
 
-    for i in range(0, len(partitions)):
-        if not dump_props[i]:
+    for index, partition in partitions.items():
+        if not dump_props[index]:
             continue
 
-        if not tree_props[i]:
+        if not tree_props[index]:
             if VENDOR_LESS:
-                print("Pulled stock props from ", partitions[i])
-                tree_props[i] = dump_props[i]
+                print("Pulled stock props from ", partition)
+                tree_props[index] = dump_props[index]
             if not VENDOR_LESS:
-                print("No", partitions[i], "prop file in tree")
-                for prop, value in dump_props[i]:
+                print("No", partition, "prop file in tree")
+                for prop, value in dump_props[index]:
                     print("Manually resolve", prop, value)
                 continue
-        dump_prop_keys = [prop[0] for prop in dump_props[i]]
-        tree_prop_keys = [prop[0] for prop in tree_props[i]]
+        dump_prop_keys = [prop[0] for prop in dump_props[index]]
+        tree_prop_keys = [prop[0] for prop in tree_props[index]]
 
         for dump_prop_key in dump_prop_keys:
             if not any(item in dump_prop_key for item in tree_prop_keys):
-                print("Need to add to", partitions[i], ":", dump_prop_key)
+                print("Need to add to", partition, ":", dump_prop_key)
 
 
 if __name__ == "__main__":
-    divvy_props()
+    divvy_props(argv[1], argv[2])
