@@ -3,8 +3,7 @@ from glob import glob
 from os import getcwd, path
 from os.path import basename
 
-# TODO Switch to logging module
-DEBUG = False
+import logging
 VENDOR_LESS = True
 
 
@@ -32,8 +31,7 @@ def combine_prop_keys(combined_props, props_to_combine, partition):
             combined_props.append(dump_systemext_prop)
         else:
             print(f"Overridden prop in {partition}:", dump_systemext_prop[0])
-    if DEBUG:
-        print(len(combined_props), f"props after {partition}")
+    logging.debug("%s props after %s", len(combined_props), partition)
 
     return combined_props
 
@@ -54,13 +52,11 @@ def read_prop_file(prop_file, dump=False, footer=None):
         try:
             key, value = raw_prop.split("=")
             if key in blocked:
-                if DEBUG:
-                    print("Skipping blocked prop", key)
+                logging.debug("Skipping blocked prop %s", key)
                 continue
             props.append([key, value])
         except ValueError:
-            if DEBUG:
-                print("ValueError", raw_prop)
+            logging.debug("ValueError %s", raw_prop)
             continue
     return props
 
@@ -151,8 +147,7 @@ def collect_props_from_dump(props_dir):
     ) = read_props_from_dump(dump_prop_files)
 
     dump_combined_props = [item for item in dump_system_props]
-    if DEBUG:
-        print(len(dump_combined_props), "props in system")
+    logging.debug("%s props in system", len(dump_combined_props))
 
     dump_combined_props = combine_prop_keys(dump_combined_props, dump_systemext_props, "system_ext")
 
@@ -184,8 +179,7 @@ def collect_props_from_tree(props_dir):
     ) = read_props_from_tree(tree_prop_files)
 
     tree_combined_props = [item for item in tree_system_props]
-    if DEBUG:
-        print(len(tree_combined_props), "props in system")
+    logging.debug("%s props in system", len(tree_combined_props))
 
     tree_combined_props = combine_prop_keys(tree_combined_props, tree_systemext_props, "system_ext")
 
@@ -241,4 +235,5 @@ def divvy_props(arg1, arg2):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.WARNING)
     divvy_props(argv[1], argv[2])
