@@ -21,7 +21,7 @@ DEVICES = {
     },
     "miatoll": {
         "kernel": "4.14",
-        "qcom_r": r"LA.UM.9.1.r1-\d{5}-SMxxx0.0",
+        "qcom_r": r"LA.UM.9.1.r1-\d{5}-SMxxx0",
         "qc_tag": "msmnile",
         "aosp_q": "project:kernel/common+branch:android-4.14-stable"
     },
@@ -56,12 +56,14 @@ def track_linux_stable(r_c=False, r_v=None):
     links = soup.find_all("table", {"class": "list nowrap"})
     for link in links[0].contents[2].find_all("td")[:-3]:
         if "linux" in link.get_text():
-            print(str(link.get_text()).replace("v4", "\nv4").replace("li", "\nli"))
+            print(str(link.get_text()).replace(f"v{r_v}", f"\nv{r_v}").replace("li", "\nli"))
         else:
             print(link.get_text())
 
 
 def track_clo_releases(caf_tag, page_cache):
+    if not caf_tag:
+        return None
     found = False
     if not page_cache:
         soup = make_soup(CLO_REPO_URL)
@@ -139,10 +141,10 @@ def track_kernel_components():
         print(STARS)
         track_linux_stable(r_v=kernel_ver)
         print(STARS)
-        cache_data = track_clo_releases(device_name["qcom_r"], cache_data)
+        cache_data = track_clo_releases(device_name.get("qcom_r"), cache_data)
         print(STARS)
         check_aosp_gerrit(device_name)
-    print(STARS)
+        print(STARS)
 
 
 if __name__ == "__main__":
