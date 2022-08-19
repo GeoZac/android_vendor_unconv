@@ -7,7 +7,6 @@ from requests import get
 from cherrypicker import STARS
 
 AOSP_CLANG_REPO = "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+log/refs/heads/master"
-CAF_REPO_URL = "https://wiki.codeaurora.org/xwiki/bin/QAEP/release"
 CLO_REPO_URL = "https://wiki.codelinaro.org/en/clo/la/release"
 LINUX_REPO_URL_ST = "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/log/?h=linux-{0}.y"
 LINUX_REPO_URL_RC = LINUX_REPO_URL_ST.replace(".git", "-rc.git")
@@ -78,29 +77,6 @@ def track_clo_releases(caf_tag, page_cache):
         row_text = ""
         for cell in row.find_all("td"):
             row_text += str(cell.string).strip() + "\t"
-        if search(caf_tag, row_text):
-            print(row_text)
-            found = True
-    if not found:
-        print("No qcom updates found")
-    return page_cache
-
-
-def track_caf_releases(caf_tag, page_cache):
-    found = False
-    if not page_cache:
-        soup = make_soup(CAF_REPO_URL)
-        data = soup.find("table")
-        page_cache = data
-    else:
-        data = page_cache
-    if not data:
-        print("Unable to fetch page data")
-        return None
-    for row in data.find_all("tr")[1:10]:
-        row_text = ""
-        for cell in row.find_all("td"):
-            row_text += str(cell.text).strip() + "\t"
         if search(caf_tag, row_text):
             print(row_text)
             found = True
