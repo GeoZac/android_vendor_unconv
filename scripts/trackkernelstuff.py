@@ -24,6 +24,10 @@ DEVICES = {
         "qc_tag": "msmnile",
         "aosp_q": "project:kernel/common+branch:android-4.14-stable"
     },
+    "arpi510": {
+        "kernel": "5.10",
+        "aosp_q": "project:kernel/common+branch:android12-5.10-lts",
+    },
 }
 
 
