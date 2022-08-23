@@ -20,7 +20,7 @@ DEVICES = {
     },
     "miatoll": {
         "kernel": "4.14",
-        "qcom_r": r"LA.UM.9.1.r1-\d{5}-SMxxx0",
+        "qcom_r": r"LA.UM.9.1.r1-\d{5}(.\d{2})?-SMxxx0",
         "qc_tag": "msmnile",
         "aosp_q": "project:kernel/common+branch:android-4.14-stable"
     },
