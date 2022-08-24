@@ -28,7 +28,6 @@ LOCAL_PRODUCT_MODULE := true
 LOCAL_MULTILIB := both
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_REQUIRED_MODULES := \
-        BromiteWebViewOverlay \
         libwebviewchromium_loader \
         libwebviewchromium_plat_support
 
