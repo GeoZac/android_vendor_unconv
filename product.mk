@@ -32,12 +32,7 @@ PRODUCT_PACKAGES += \
 
 # Some theming overlays
 PRODUCT_PACKAGES += \
-   CornerRadius-Moar_Round \
-   QsBgDark-AOSPGray \
-   NotifDark-SystemUI-AOSPGray \
-   BackgroundDark-AOSP \
-   NotifDark-System-NotifDark-SystemUI-AOSPGray \
-   BackgroundLight-Blue
+   CornerRadius-Moar_Round
 
 # Add some nostalgic tunes
 PRODUCT_COPY_FILES += \
