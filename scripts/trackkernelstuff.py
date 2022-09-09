@@ -20,9 +20,12 @@ DEVICES = {
     },
     "miatoll": {
         "kernel": "4.14",
-        "qcom_r": r"LA.UM.9.1.r1-\d{5}(.\d{2})?-SMxxx0",
+        "qcom_r": [
+            r"LA.UM.9.1.r1-\d{5}(.\d{2})?-SMxxx0",
+            r"atoll",
+        ],
         "qc_tag": "msmnile",
-        "aosp_q": "project:kernel/common+branch:android-4.14-stable"
+        "aosp_q": "project:kernel/common+branch:android-4.14-stable",
     },
     "arpi510": {
         "kernel": "5.10",
@@ -81,9 +84,17 @@ def track_clo_releases(caf_tag, page_cache):
         row_text = ""
         for cell in row.find_all("td"):
             row_text += str(cell.string).strip() + "\t"
-        if search(caf_tag, row_text):
-            print(row_text)
-            found = True
+        if isinstance(caf_tag, list):
+            if any(search(tag, row_text) for tag in caf_tag):
+                print(row_text)
+                found = True
+        elif isinstance(caf_tag, str):
+            if search(caf_tag, row_text):
+                print(row_text)
+                found = True
+        else:
+            print("Malformed config")
+            return page_cache
     if not found:
         print("No qcom updates found")
     return page_cache
