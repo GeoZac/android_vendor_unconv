@@ -1,3 +1,4 @@
+import sys
 from hashlib import sha256
 from os.path import exists, isfile
 from urllib.request import urlopen
@@ -5,7 +6,7 @@ from urllib.request import urlopen
 from clint.textui.progress import bar
 from inputimeout import inputimeout, TimeoutOccurred
 from packaging import version
-from requests import get
+from requests import exceptions, get
 
 ENABLED = True
 DEBUG = False
@@ -158,6 +159,15 @@ def latest_bromite():
         print("Everything in order")
 
 
+def check_internet():
+    try:
+        get("https://api.github.com")
+    except exceptions.ConnectionError:
+        print("No internet, bailing...")
+        sys.exit(0)
+
+
 if __name__ == "__main__":
     if ENABLED:
+        check_internet()
         latest_bromite()
