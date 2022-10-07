@@ -13,7 +13,7 @@ Custom ROMs like AICP or LineageOS will automatically call it if they find it in
 - Bromite systemWebView by default
     - (Where are the prebuilt apks you ask? They are fetched by a script when the ```source build/envsetup.sh``` is run, and will check for updates on subsequent script executions)
 - ~Prefers *Lawnchair* over any other launcher by default, will add to the build if makefile is found~
-- A [manifest](manifests/unconv_remove.xml) file to remove some unused packages and add some alternatives
+- A [manifest](manifests/unconv.xml) file to remove some unused packages and add some alternatives
 - Overlays
     - Enable rotation for all directions by default
     - Show Internal storage by default in DocumentsUI (Files) app and,
