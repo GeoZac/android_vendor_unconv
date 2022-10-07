@@ -161,13 +161,13 @@
     <!--<remove-project name="omnirom/android_packages_apps_Phonograph"/>-->
 
     <!-- Lineage Alternatives -->
-    <project path="packages/apps/Recorder" name="LineageOS/android_packages_apps_Recorder" remote="github" revision="lineage-19.1"/>
+    <project path="packages/apps/Recorder" name="LineageOS/android_packages_apps_Recorder" remote="github" revision="lineage-20.0"/>
     <!--<project path="packages/apps/Terminal" name="LineageOS/android_packages_apps_Terminal" remote="github" revision="lineage-18.1"/>-->
 
     <!-- Custom additions -->
     <!--<project path="packages/apps/OmniStyle" name="GeoZac/android_packages_apps_OmniStyle" remote="github" revision="r11.1"/>-->
-    <project path="packages/apps/OnDeviceAppPrediction" name="GeoZac/android_packages_apps_OnDeviceAppPrediction" remote="github" revision="s12.1"/>
-    <!--<project path="vendor/extra" name="GeoZac/android_vendor_unconv" remote="github" revision="master"/>-->
+    <project path="packages/apps/OnDeviceAppPrediction" name="GeoZac/android_packages_apps_OnDeviceAppPrediction" remote="github" revision="t13.0"/>
+    <project path="vendor/extra" name="GeoZac/android_vendor_unconv" remote="github" revision="t"/>-->
     <!--<project path="external/jetbrainsmono" name="GeoZac/android_external_jetbrainsmono" remote="github" revision="master"/>-->
 
 </manifest>
