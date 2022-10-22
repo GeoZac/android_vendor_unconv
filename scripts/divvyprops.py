@@ -1,9 +1,9 @@
-from sys import argv
+import logging
+import sys
 from glob import glob
 from os import getcwd, path
 from os.path import basename
 
-import logging
 VENDOR_LESS = True
 
 
@@ -146,7 +146,7 @@ def collect_props_from_dump(props_dir):
         dump_product_props,
     ) = read_props_from_dump(dump_prop_files)
 
-    dump_combined_props = [item for item in dump_system_props]
+    dump_combined_props = list(dump_system_props)
     logging.debug("%s props in system", len(dump_combined_props))
 
     dump_combined_props = combine_prop_keys(dump_combined_props, dump_systemext_props, "system_ext")
@@ -178,7 +178,7 @@ def collect_props_from_tree(props_dir):
         tree_product_props,
     ) = read_props_from_tree(tree_prop_files)
 
-    tree_combined_props = [item for item in tree_system_props]
+    tree_combined_props = list(tree_system_props)
     logging.debug("%s props in system", len(tree_combined_props))
 
     tree_combined_props = combine_prop_keys(tree_combined_props, tree_systemext_props, "system_ext")
@@ -234,6 +234,14 @@ def divvy_props(arg1, arg2):
                 print("Need to add to", partition, ":", dump_prop_key)
 
 
-if __name__ == "__main__":
+def main():
+    args = sys.argv
+    if len(args) < 3:
+        print("Script requires at-least two arguments")
+        sys.exit(0)
     logging.basicConfig(level=logging.WARNING)
-    divvy_props(argv[1], argv[2])
+    divvy_props(args[1], args[2])
+
+
+if __name__ == "__main__":
+    main()
