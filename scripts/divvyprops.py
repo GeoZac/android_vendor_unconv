@@ -36,8 +36,9 @@ def combine_prop_keys(combined_props, props_to_combine, partition):
     return combined_props
 
 
-def read_prop_file(prop_file, dump=False, footer=None):
-    blocked = get_block_list()
+def read_prop_file(prop_file, dump=False, footer=None, blocked=None):
+    if blocked is None:
+        blocked = []
     props = []
     with open(prop_file, mode="r") as in_prop:
         raw_props = in_prop.read().splitlines()
@@ -62,6 +63,7 @@ def read_prop_file(prop_file, dump=False, footer=None):
 
 
 def read_props_from_dump(dump_prop_files):
+    blocked = get_block_list()
     dump_system_props = []
     dump_systemext_props = []
     dump_vendor_props = []
@@ -72,27 +74,32 @@ def read_props_from_dump(dump_prop_files):
         if basename(head) == "system":
             print("Found build.prop in system")
             dump_system_props = read_prop_file(
-                dump_prop_file, True, "# end build properties"
+                dump_prop_file, True, "# end build properties",
+                blocked
             )
         elif basename(head) == "system_ext":
             print("Found build.prop in system_ext")
             dump_systemext_props = read_prop_file(
-                dump_prop_file, True, "# end common build properties"
+                dump_prop_file, True, "# end common build properties",
+                blocked
             )
         elif basename(head) == "vendor":
             print("Found build.prop in vendor")
             dump_vendor_props = read_prop_file(
-                dump_prop_file, True, "# end common build properties"
+                dump_prop_file, True, "# end common build properties",
+                blocked
             )
         elif "odm\\etc" in head:
             print("Found build.prop in odm")
             dump_odm_props = read_prop_file(
-                dump_prop_file, True, "# end common build properties"
+                dump_prop_file, True, "# end common build properties",
+                blocked
             )
         elif basename(head) == "product":
             print("Found build.prop in product")
             dump_product_props = read_prop_file(
-                dump_prop_file, True, "# end common build properties"
+                dump_prop_file, True, "# end common build properties",
+                blocked
             )
     return (
         dump_system_props,
