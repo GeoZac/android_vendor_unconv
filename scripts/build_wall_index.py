@@ -17,7 +17,7 @@ def push_gist(gist_cn):
 
     headers = {"Authorization": f"token {gist_tn}"}
     g_response = patch(
-        "https://api.github.com/gists/" + gist_id,
+        f"https://api.github.com/gists/{gist_id}",
         data=dumps({"files": {gist_fn: {"content": gist_cn}}}),
         headers=headers,
     )
@@ -44,7 +44,7 @@ def build_index():
             new = dict()
             r_patrn = re.compile(r"(?<=.com/).*(?=\?ixid)")
             r_match = r_patrn.search(r_url).group()
-            new["filename"] = r_match + ".jpg"
+            new["filename"] = f"{r_match}.jpg"
             new["url"] = f"{r_url}&cs=tinysrgb&fit=max&fm=jpg&h=2400"
             new["thumb"] = urls["thumb"]
             new["creator"] = wall["user"]["name"]

@@ -20,7 +20,7 @@ ASSET_NAMES = [
 
 
 def write_tag(tag):
-    f_name = BASE_PATH + "bromite_version.txt"
+    f_name = f"{BASE_PATH}bromite_version.txt"
     with open(f_name, "w") as file_write:
         file_write.write(tag)
 
@@ -98,7 +98,7 @@ def get_latest_bromite():
     skip_version = False
     tag_name = data[index]["tag_name"]
     pre_release = data[index]["prerelease"]
-    f_name = BASE_PATH + "bromite_version.txt"
+    f_name = f"{BASE_PATH}bromite_version.txt"
     if exists(f_name):
         if pre_release:
             # Skip pre-release versions
@@ -142,7 +142,7 @@ def get_latest_bromite():
 
 def check_file_exists():
     # On a fresh clone the files are not supposed to exist, so get the latest tag, get the assets,mark the version
-    if not exists(BASE_PATH + "bromite_version.txt"):
+    if not exists(f"{BASE_PATH}bromite_version.txt"):
         print("Seems not initialised, will do it now")
         get_latest_bromite()
         return False
