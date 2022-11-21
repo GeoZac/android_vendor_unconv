@@ -4,7 +4,7 @@ import collections
 import re
 import argparse
 
-PATTERN = r"\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}\s{2,}\d{1,}\s{1,}\d{1,}\s\w"
+PATTERN = r"\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}\s{1,}\d{1,}\s{1,}\d{1,}\s\w"
 LOG_LEVELS = {
     "V": 5,
     "D": 4,
@@ -27,6 +27,8 @@ def logcat_spammers(args):
 
     ctr = collections.Counter(domains)
     most_com = ctr.most_common(100)
+    if not most_com:
+        return
     max_count = len(str(most_com[0][1]))
     for com, tim in most_com:
         if LOG_LEVELS[com[0]] > args.L:
