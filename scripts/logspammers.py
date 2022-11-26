@@ -20,10 +20,13 @@ def logcat_spammers(args):
         lines = file_iput.readlines()
     domains = []
     for line in lines:
-        matches = re.findall(PATTERN, line)
+        matches = re.search(PATTERN, line)
         if matches:
             splits = line.split(matches[0][:-1])
-            domains.append(splits[1])
+            if args.T:
+                domains.append(splits[1].split(":")[0])
+            else:
+                domains.append(splits[1])
 
     ctr = collections.Counter(domains)
     most_com = ctr.most_common(100)
@@ -43,5 +46,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("file")
     parser.add_argument("-L", type=int, default=6, help="Filter to log levels")
+    parser.add_argument(
+        "-T", action="store_true", default=False, help="Search just the tags"
+    )
     argv = parser.parse_args()
     logcat_spammers(argv)
