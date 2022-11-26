@@ -19,6 +19,7 @@ def logcat_spammers(args):
     with open(args.file, "r", errors="replace") as file_iput:
         lines = file_iput.readlines()
     domains = []
+    evaded_regex = []
     for line in lines:
         matches = re.search(PATTERN, line)
         if matches:
@@ -28,6 +29,8 @@ def logcat_spammers(args):
             else:
                 domains.append(splits[1])
 
+        else:
+            evaded_regex.append(line)
     ctr = collections.Counter(domains)
     most_com = ctr.most_common(100)
     if not most_com:
@@ -40,6 +43,10 @@ def logcat_spammers(args):
             str(tim).rjust(max_count, " "),
             com.strip()
         )
+
+    print("Evaded regex")
+    for item in evaded_regex:
+        print(item.strip())
 
 
 if __name__ == "__main__":
