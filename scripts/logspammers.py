@@ -18,6 +18,10 @@ LOG_LEVELS = {
 def logcat_spammers(args):
     with open(args.file, "r", errors="replace") as file_iput:
         lines = file_iput.readlines()
+    return lines
+
+
+def go_through_logcat(args, lines):
     domains = []
     evaded_regex = []
     for line in lines:
@@ -57,4 +61,5 @@ if __name__ == "__main__":
         "-T", action="store_true", default=False, help="Search just the tags"
     )
     argv = parser.parse_args()
-    logcat_spammers(argv)
+    logs = logcat_spammers(argv)
+    go_through_logcat(argv, logs)
