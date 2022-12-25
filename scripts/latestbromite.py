@@ -53,12 +53,13 @@ def get_asset_hashes(assets, files_to_hash):
     for asset in assets:
         hashes = {}
         if "sha256.txt" in asset["name"]:
-            for line in urlopen(asset["browser_download_url"]):
-                line = line.decode('utf-8')
-                if any(x in line for x in files_to_hash):
-                    file_hash = line.split(" ")
-                    hashes[file_hash[-1].rstrip()] = file_hash[0]
-            return hashes
+            with urlopen(asset["browser_download_url"]) as url_file:
+                for line in url_file:
+                    line = line.decode('utf-8')
+                    if any(x in line for x in files_to_hash):
+                        file_hash = line.split(" ")
+                        hashes[file_hash[-1].rstrip()] = file_hash[0]
+                return hashes
     return None
 
 
@@ -66,7 +67,8 @@ def update_assets(tag, assets):
     asset_hashes = get_asset_hashes(assets, ASSET_NAMES)
     for asset in assets:
         asset_name = asset["name"]
-        filename = BASE_PATH + asset_name.split("_")[0] + "/SystemWebView.apk"
+        arch_type = str(asset_name).split("_", maxsplit=1)[0]
+        filename = "".join([BASE_PATH, arch_type, "SystemWebView.apk"])
         file_size = asset["size"]
         if not any(item in asset_name for item in ASSET_NAMES):
             if DEBUG:  # Silently continue in case not DEBUG
@@ -107,7 +109,7 @@ def get_latest_bromite():
             current_version = file_read.readline()
             print(f"Current Version: {current_version}")
     else:
-        # Since we have no priors version,apply a sane value to check
+        # Since we have no prior version, apply a sane value to check
         current_version = "0.0.0.0"
         # Also check if the latest version is a pre-release, in which case, get the previous version
         if pre_release:
