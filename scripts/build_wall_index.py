@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import re
+import sys
 from json import dumps
 from os import getenv
 from os.path import realpath, dirname, join
@@ -24,33 +25,49 @@ def push_gist(gist_cn):
     return g_response.json()["files"][gist_fn]["raw_url"]
 
 
-def build_index():
+def make_unsplash_api_call(u_api_url):
     params = {
         "query": "wallpapers",
         "orientation": "portrait",
         "client_id": getenv("UNSPLASH_KEY"),
     }
+    unsplash_response = get(u_api_url, params=params)
+    if unsplash_response.status_code == 200:
+        return unsplash_response.json()
 
+    print(f"Unsplash API call failed with {unsplash_response.status_code}")
+    return None
+
+
+def parse_json(u_response, wall_list):
+    count = len(wall_list)
+    for wall in u_response["results"]:
+        urls = wall["urls"]
+        r_url = urls["raw"]
+        new = dict()
+        r_patrn = re.compile(r"(?<=.com/).*(?=\?ixid)")
+        r_match = r_patrn.search(r_url).group()
+        new["filename"] = f"{r_match}.jpg"
+        new["url"] = f"{r_url}&cs=tinysrgb&fit=max&fm=jpg&h=2400"
+        new["thumb"] = urls["thumb"]
+        new["creator"] = wall["user"]["name"]
+        new["name"] = f"Wallpaper {count + 1:03}"
+        count += 1
+        wall_list.append(new)
+    return wall_list
+
+
+def build_index():
     rand_page = randint(0, 10)
     u_api_url = f"https://api.unsplash.com/search/photos?page={rand_page}"
     max_count = 150
     count = 0
     wall_list = []
     while count <= max_count:
-        u_response = get(u_api_url, params=params).json()
-        for wall in u_response["results"]:
-            urls = wall["urls"]
-            r_url = urls["raw"]
-            new = dict()
-            r_patrn = re.compile(r"(?<=.com/).*(?=\?ixid)")
-            r_match = r_patrn.search(r_url).group()
-            new["filename"] = f"{r_match}.jpg"
-            new["url"] = f"{r_url}&cs=tinysrgb&fit=max&fm=jpg&h=2400"
-            new["thumb"] = urls["thumb"]
-            new["creator"] = wall["user"]["name"]
-            new["name"] = f"Wallpaper {count + 1:03}"
-            count += 1
-            wall_list.append(new)
+        u_response = make_unsplash_api_call(u_api_url)
+        if u_response is None:
+            sys.exit(0)
+        wall_list = parse_json(u_response, wall_list)
         rand_page = randint(0, u_response["total_pages"])
         u_api_url = f"https://api.unsplash.com/search/photos?page={rand_page}"
 
