@@ -22,10 +22,14 @@ def push_gist(gist_cn):
         data=dumps({"files": {gist_fn: {"content": gist_cn}}}),
         headers=headers,
     )
+    if g_response.status_code != 200:
+        print(f"GitHub API call failed with {g_response.status_code}")
+        return None
     return g_response.json()["files"][gist_fn]["raw_url"]
 
 
-def make_unsplash_api_call(u_api_url):
+def make_unsplash_api_call(page_no):
+    u_api_url = f"https://api.unsplash.com/search/photos?page={page_no}"
     params = {
         "query": "wallpapers",
         "orientation": "portrait",
@@ -59,17 +63,15 @@ def parse_json(u_response, wall_list):
 
 def build_index():
     rand_page = randint(0, 10)
-    u_api_url = f"https://api.unsplash.com/search/photos?page={rand_page}"
     max_count = 150
     count = 0
     wall_list = []
     while count <= max_count:
-        u_response = make_unsplash_api_call(u_api_url)
+        u_response = make_unsplash_api_call(rand_page)
         if u_response is None:
             sys.exit(0)
         wall_list = parse_json(u_response, wall_list)
         rand_page = randint(0, u_response["total_pages"])
-        u_api_url = f"https://api.unsplash.com/search/photos?page={rand_page}"
 
     return dumps(
         wall_list,
@@ -80,6 +82,8 @@ def build_index():
 def generate(arg):
     app_json = build_index()
     raw_url = push_gist(app_json).rjust(8)
+    if raw_url is None:
+        sys.exit(0)
     placeholder_line_found = False
     with open(join(dirname(realpath(__file__)), "stub.xml"), "r") as input_file:
         with open(join(arg, "config.xml"), "w") as output_file:
