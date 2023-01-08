@@ -66,12 +66,14 @@ def build_index():
     max_count = 150
     count = 0
     wall_list = []
-    while count <= max_count:
+    while count < max_count:
         u_response = make_unsplash_api_call(rand_page)
         if u_response is None:
             sys.exit(0)
         wall_list = parse_json(u_response, wall_list)
+        count = len(wall_list)
         rand_page = randint(0, u_response["total_pages"])
+        print(f"Compiled list at {count} items")
 
     return dumps(
         wall_list,
