@@ -5,3 +5,5 @@ prebuilt/apps/bromite-webview/bromite_version.txt
 .idea/
 
 */__pycache__/
+
+.vscode/
