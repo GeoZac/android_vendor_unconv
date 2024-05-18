@@ -37,3 +37,7 @@ PRODUCT_PACKAGES += \
 # Add some nostalgic tunes
 PRODUCT_COPY_FILES += \
     frameworks/base/data/sounds/ringtones/ogg/Dione_48k.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Unconv.ogg
+
+# Ad-block
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.aicp.hosts_block=true
