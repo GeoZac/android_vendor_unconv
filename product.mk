@@ -6,7 +6,6 @@ $(call inherit-product-if-exists, external/jetbrainsmono/fonts.mk)
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    bromite-webview \
     Recorder \
     Terminal
 
